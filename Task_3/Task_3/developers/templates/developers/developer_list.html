@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Developer List</title>
+</head>
+<body>
+    <h1>All Developers</h1>
+    <a href="{% url 'create_developer' %}">Add New Developer</a>
+    <hr>
+    <ul>
+        {% for dev in developers %}
+            <li>
+                <strong>{{ dev.first_name }} {{ dev.last_name }}</strong> (Age: {{ dev.age }})
+                <br>
+                Email: {{ dev.email }}
+                <br>
+                Skill: <span style="background-color: #eee; padding: 2px 5px; border-radius: 5px;">
+                    {{ dev.skill.title|default:"Not specified" }}
+                </span>
+            </li>
+            <br>
+        {% empty %}
+            <li>No developers found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
