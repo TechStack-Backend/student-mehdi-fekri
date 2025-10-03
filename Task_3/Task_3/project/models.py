@@ -1,6 +1,6 @@
 from django.db import models
 from developers.models import Developer
-# Create your models here.
+
 class project(models.Model):
     title = models.CharField(max_length=20)
     description = models.TextField(blank=True)
