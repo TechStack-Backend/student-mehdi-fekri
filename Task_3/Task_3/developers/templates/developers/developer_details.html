@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+   
+</html>
+<body>
+    <h1>
+    Developer Detail
+    <br>
+    
+    </h1>
+    <hr>
+    <p><strong>First Name :</strong> {{ developer.first_name }}</p>
+    <p><strong>Last Name :</strong> {{ developer.last_name }}</p>
+    <p><strong>Email :</strong> {{ developer.email }}</p>
+    <p><strong>Age :</strong> {{ developer.age }}</p>
+    <p><strong>skills :</strong> 
+                {% for sk in developer.skill.all %}
+                {{ sk.title }} {% if not forloop.last %}, {% endif %}
+                {% empty %}
+                NOT SPECIFIED
+                {% endfor %}
+                <br>
+                <br>
+    <a href="{% url 'developer_update' developer.pk %}">Edit Information</a>
+    <br>
+    <a href="{% url 'developer_delete' developer.pk %}">Delete Developer</a>
+  
+    </p>
+    
+</body>

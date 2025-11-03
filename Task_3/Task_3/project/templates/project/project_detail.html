@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    Details
+</head>
+<title>
+    {{ project.title }} Details
+</title>
+<hr>
+<p>
+    <strong>Project Title:</strong>
+    {{ project.title }}
+</p>
+<p>
+    <strong>Project Descriptions:</strong>
+    {{ project.description }}
+</p>
+<p>
+    <strong>Project Developers :</strong>
+    <br>
+    <ul>
+    {% for dev in project.developers.all %}
+    <li>
+    {{ dev.first_name }} {{ dev.last_name }}
+    </li>
+        {% empty %}
+    <li>
+        No developers found.
+    </li>
+    {% endfor %}
+    </ul>
+</p>
+    <a href="{% url 'project_update' project.pk %}">Edit Information</a>
+    <br>    
+    <a href="{% url 'project_delete' project.pk %}">Delete Project</a>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project List</title>
+</head>
+<body>
+    <h1>All Projects</h1>
+    <a href="{% url 'create_project' %}">Add New Project</a>
+    <hr>
+    <ul>
+        {% for project in projects %}
+            <li>
+       <h3>
+  <a href="{% url 'project_detail' project.pk %}">
+    {{ project.title }}
+  </a>
+</h3>
+            </li>
+        {% empty %}
+            <li>No projects found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+ {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}

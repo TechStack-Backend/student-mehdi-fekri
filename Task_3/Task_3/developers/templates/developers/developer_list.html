@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Developer List</title>
+</head>
+<body>
+    <h1>All Developers</h1>
+    <a href="{% url 'create_developer' %}">Add New Developer</a><br>
+    <a href="{% url 'create_skills' %}">Add New Skill</a>
+    <hr>
+    
+     <form method="get" class="mb-3">
+        <input type="text" name="skill" placeholder="Search By Skill" value="{{ request.GET.skill }}">
+        <button type="submit">Search</button>
+      </form>
+    <ul>
+        {% for dev in developers %}
+            <li>
+                <strong>{{ dev.first_name }} {{ dev.last_name }}</strong> (Age: {{ dev.age }})
+                <br>
+                Email: {{ dev.email }}
+                
+                <br>
+                    <a href="{% url 'developer_details' dev.pk %}">More Information</a><br>
+            </li>
+            <br>
+        {% empty %}
+            <li>No developers found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
