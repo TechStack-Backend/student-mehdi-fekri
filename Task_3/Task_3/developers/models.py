@@ -14,11 +14,8 @@ class Developer(models.Model):
     last_name = models.CharField(max_length=20)
     email = models.EmailField(unique=True)
     age = models.IntegerField()
-    skill = models.ForeignKey(
-        Skill,
-        on_delete=models.CASCADE,
-        related_name="Developer_skill"
-    )
+    skill = models.ManyToManyField(Skill)
+    
     def __str__(self):
         return self.first_name + self.last_name
 

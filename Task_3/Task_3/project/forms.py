@@ -11,4 +11,10 @@ class ProjectForms(forms.ModelForm):
     class Meta:
         model = project
         fields = ['title','description','developers']
+    def clean(self):
+        cleaned_data = super().clean()
+        description = cleaned_data.get('description')
+        if not  description :
+            raise forms.ValidationError("Description cannot be empty. ")
+        return cleaned_data
      
