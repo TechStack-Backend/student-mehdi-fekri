@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+   
+</html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/back.css' %}">
+</head>
+<body>
+    <h1>
+        My Profile
+        <br>
+    
+    </h1>
+    <hr>
+<p><strong>Username :</strong> {{ userDetail.user.username }}</p>
+    <p><strong>Bio :</strong> {{ userDetail.bio }}</p>
+    <p><strong>Picture :</strong> {{ Username.picture }}
+        <br>
+    <img src="{{ userDetail.picture.url }}" alt="Profile Picture" style="width: 150px; height: auto;">
+</p>
+   
+   
+    
+</body>

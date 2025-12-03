@@ -3,19 +3,18 @@
     <link rel="stylesheet" href="{% static 'css/back.css' %}">
 
 <html>
-        {% include 'navbar.html' %}
-
 <head>
-    
-    <title>Create Project</title>
+    <title>Register Page</title>
 </head>
 <body>
-    <h1>Add a New Project</h1>
- 
+    <h1>Register New User</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save</button>
+        <button type="submit">Login</button>
     </form>
+    <p>
+        Already have an account? <a href="{% url 'login' %}">Login here</a>.
+    </p>
 </body>
 </html>

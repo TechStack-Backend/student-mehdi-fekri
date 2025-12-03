@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/back.css' %}">
+
+    <body>
+        <h1>
+            Update Profile
+        </h1>
+        {% if user.profile.picture %}
+            <div style="margin-bottom: 20px;">
+                <img src="{{ user.profile.picture.url }}"  style="max-width: 150px; height: auto; border-radius: 50%;">
+                <p></p>
+            </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+<p>
+                {{ form.bio.label_tag }} 
+                {{ form.bio }} 
+            </p>
+
+            <p>
+                {{ form.picture }} 
+            </p>
+                    <button type="submit">Save</button>
+    </form>
+    </body>
+</html>

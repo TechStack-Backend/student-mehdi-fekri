@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Developer , Skill
 from .forms import DeveloperForm , Skills_form
 from django.views.generic import ListView,CreateView,DeleteView,DetailView,UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 # def developer_list(request):
 #     developers = Developer.objects.all()
 #     return render(request,'developers/developer_list.html',{'developers':developers})
@@ -27,7 +28,7 @@ from django.views.generic import ListView,CreateView,DeleteView,DetailView,Updat
 #         form = Skills_form()
 #     return render(request,"developers/create_skills.html",{'form':form,'skills':skills})
         
-class Developers_List(ListView):
+class Developers_List(LoginRequiredMixin,ListView):
     model = Developer
     template_name = 'developers/developer_list.html'
     ordering= ['last_name']
@@ -45,13 +46,13 @@ class Developers_List(ListView):
 
         return qs
 
-class Craate_Developers(CreateView):
+class Craate_Developers(LoginRequiredMixin,CreateView):
     model = Developer
     form_class = DeveloperForm
     template_name = 'developers/create_developer.html'
     success_url = '/developers'
     
-class Create_Skill(CreateView):
+class Create_Skill(LoginRequiredMixin,CreateView):
     model= Skill
     form_class = Skills_form
     template_name = 'developers/create_skills.html'
@@ -63,13 +64,13 @@ class Create_Skill(CreateView):
         context['skills'] = Skill.objects.all()
         return context
 
-class Developer_Detail(DetailView):
+class Developer_Detail(LoginRequiredMixin,DetailView):
     model= Developer
     template_name = 'developers/developer_details.html'
     context_object_name = 'developer'
 
 
-class Developer_Update(UpdateView):
+class Developer_Update(LoginRequiredMixin,UpdateView):
     model = Developer
     #fields = ['age', 'email','skill']      
     #context_object_name = "developer"
@@ -82,7 +83,7 @@ class Developer_Update(UpdateView):
         form.fields = {k: v for k, v in form.fields.items() if k in ['email', 'age', 'skill']}
         return form
 
-class Developer_Delete(DeleteView):
+class Developer_Delete(LoginRequiredMixin,DeleteView):
     model = Developer
     success_url = '/developers'
     template_name = 'developers/developer_delete.html'
