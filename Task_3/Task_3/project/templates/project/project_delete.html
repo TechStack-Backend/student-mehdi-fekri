@@ -1,4 +1,9 @@
 <!DOCTYPE html> 
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'css/back.css' %}">
+
+    {% include 'navbar.html' %}
+
 <h1>Are you sure you want to delete {{ project.title}} ?</h1>
 <form method="post" >
     {% csrf_token %}

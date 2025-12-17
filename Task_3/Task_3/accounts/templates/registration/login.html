@@ -1,0 +1,21 @@
+
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+    <h2>Login Page</h2>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'css/back.css' %}">
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        
+        <button type="submit" style="padding: 10px; background-color: #3498db; color: white; border: none; cursor: pointer; border-radius: 4px;">Login</button>
+    </form>
+    
+    <p style="margin-top: 20px;">
+     Don`t Have Account? <a href="{% url 'register' %}">Register </a>
+    </p>
+
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+    {% endif %}
+</div>
