@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Developer , Skill
 from .forms import DeveloperForm , Skills_form
 from django.views.generic import ListView,CreateView,DeleteView,DetailView,UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 # def developer_list(request):
 #     developers = Developer.objects.all()
 #     return render(request,'developers/developer_list.html',{'developers':developers})
@@ -52,7 +52,9 @@ class Craate_Developers(LoginRequiredMixin,CreateView):
     template_name = 'developers/create_developer.html'
     success_url = '/developers'
     
-class Create_Skill(LoginRequiredMixin,CreateView):
+    
+class Create_Skill(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'project.add_project'
     model= Skill
     form_class = Skills_form
     template_name = 'developers/create_skills.html'

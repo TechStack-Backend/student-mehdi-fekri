@@ -23,7 +23,7 @@ class EditProfileModel(LoginRequiredMixin,UpdateView):
     form_class = EditProfileForm
     success_url = '/'
 
-    def get_object(self):
+    def get_object(self,queryset = None):
         return self.request.user.profile
     
 
